@@ -1,69 +1,71 @@
+#include <SDL2/SDL.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <time.h>
 #include <string.h>
+#include <time.h>
 
-#include <SDL2/SDL.h>
-
-#define CHECK_ERROR(test, message) \
-    do { \
-        if((test)) { \
+#define CHECK_ERROR(test, message)              \
+    do {                                        \
+        if ((test)) {                           \
             fprintf(stderr, "%s\n", (message)); \
-            exit(1); \
-        } \
-    } while(0)
+            exit(1);                            \
+        }                                       \
+    } while (0)
 
 // Window dimensions
-static const int width = 800;
+static const int width = 1000;
 static const int height = 600;
-static const int player = 20;
+static const int player = 50;
 
-int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius);
+int SDL_RenderFillCircle(SDL_Renderer *renderer, int x, int y, int radius);
 
 int main(int argc, char **argv) {
     // Initialize SDL
     CHECK_ERROR(SDL_Init(SDL_INIT_VIDEO) != 0, SDL_GetError());
 
     // Create an SDL window
-    SDL_Window *window = SDL_CreateWindow("MAZE RUNNER", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL);
+    SDL_Window *window = SDL_CreateWindow(
+        "MAZE RUNNER", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width,
+        height, SDL_WINDOW_OPENGL);
     CHECK_ERROR(window == NULL, SDL_GetError());
 
     // Create a renderer (accelerated and in sync with the display refresh rate)
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);    
+    SDL_Renderer *renderer = SDL_CreateRenderer(
+        window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     CHECK_ERROR(renderer == NULL, SDL_GetError());
 
-	// Initial renderer color
+    // Initial renderer color
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    
+
     SDL_Rect rectangle;
     rectangle.x = 5;
     rectangle.y = 5;
-    rectangle.w = width-10;
-    rectangle.h = height-10;
+    rectangle.w = width - 10;
+    rectangle.h = height - 10;
 
     bool running = true;
     SDL_Event event;
-    while(running) {
+    while (running) {
         // Process events
-        while(SDL_PollEvent(&event)) {
-            if(event.type == SDL_QUIT) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
                 running = false;
             }
-    	}
-        
+        }
+
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        
+
         // Clear screen
         SDL_RenderClear(renderer);
-        
+
         // Draw
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    	SDL_RenderDrawRect(renderer, &rectangle);
-    	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    	SDL_RenderFillCircle(renderer, 15, 15, 6);
-    	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    	SDL_RenderFillCircle(renderer, width-15, height-15, 6);
+        SDL_RenderDrawRect(renderer, &rectangle);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        SDL_RenderFillCircle(renderer, 15, 15, 6);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderFillCircle(renderer, width - 15, height - 15, 6);
 
         // Show what was drawn
         SDL_RenderPresent(renderer);
@@ -77,19 +79,16 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-int
-SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
-{
+int SDL_RenderFillCircle(SDL_Renderer *renderer, int x, int y, int radius) {
     int offsetx, offsety, d;
     int status;
 
     offsetx = 0;
     offsety = radius;
-    d = radius -1;
+    d = radius - 1;
     status = 0;
 
     while (offsety >= offsetx) {
-
         status += SDL_RenderDrawLine(renderer, x - offsety, y + offsetx,
                                      x + offsety, y + offsetx);
         status += SDL_RenderDrawLine(renderer, x - offsetx, y + offsety,
@@ -104,15 +103,13 @@ SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
             break;
         }
 
-        if (d >= 2*offsetx) {
-            d -= 2*offsetx + 1;
-            offsetx +=1;
-        }
-        else if (d < 2 * (radius - offsety)) {
+        if (d >= 2 * offsetx) {
+            d -= 2 * offsetx + 1;
+            offsetx += 1;
+        } else if (d < 2 * (radius - offsety)) {
             d += 2 * offsety - 1;
             offsety -= 1;
-        }
-        else {
+        } else {
             d += 2 * (offsety - offsetx - 1);
             offsety -= 1;
             offsetx += 1;
