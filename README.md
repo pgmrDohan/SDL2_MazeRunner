@@ -11,7 +11,7 @@ This Maze game is used to study algorithms like DFS, BFS, A* and etc.
 - [x] SDL2 Init, Window, Renderer
 - [ ] Draw main Rectangle
 - [ ] Draw Select menu on func
-- [ ] Draw Title
+- [x] Draw Title
 - [ ] Grided main rectangle
 - [ ] Generate Algorithm
 - [ ] Solve Algorithm
