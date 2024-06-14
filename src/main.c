@@ -8,6 +8,7 @@ int main(int argc, char **argv) {
   SDL_Renderer *renderer = SDL_CreateMazeRunnerRenderer(window);
 
   MazeRunnerTitle *logo = MAZE_SetTitle(renderer);
+  MazeRunnerHelp *manual = MAZE_SetHelp(renderer);
 
   SDL_Rect Main_rect = {10, 10, 980, 550};
 
@@ -27,6 +28,7 @@ int main(int argc, char **argv) {
     SDL_RenderDrawRect(renderer, &Main_rect);
 
     MAZE_RenderTitle(renderer, logo);
+    MAZE_RenderHelp(renderer, manual);
 
     SDL_RenderPresent(renderer);
   }
@@ -34,6 +36,7 @@ int main(int argc, char **argv) {
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   MAZE_DestroyTitle(logo);
+  MAZE_DestroyHelp(manual);
   TTF_Quit();
   SDL_Quit();
 
