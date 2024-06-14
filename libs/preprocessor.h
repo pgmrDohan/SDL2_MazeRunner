@@ -12,7 +12,6 @@
 #define HEIGHT 600
 
 #define FONT TTF_OpenFont("../resources/ark-pixel.bdf", 10)
-#include "SDL_Colors.h"
 
 #define CHECK_ERROR(test, message)        \
   do {                                    \
@@ -21,3 +20,9 @@
       exit(1);                            \
     }                                     \
   } while (0)
+
+#include "./SDL_Colors.h"
+#include "./SDL_Inits.h"
+#include "./SDL_Text.h"
+//
+#include "./MAZE_Texts.h"
