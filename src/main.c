@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     SDL_SetWindowOpacity(window, 0.8);
 
     SDL_Surface* icon;
-    icon = IMG_Load("media/icon.png");
+    icon = IMG_Load("resources/icon.png");
     SDL_SetWindowIcon(window,icon);
 
     SDL_Renderer *renderer = SDL_CreateRenderer(
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     CHECK_ERROR(renderer == NULL, SDL_GetError());
 
     TTF_Init();
-    TTF_Font* Sans = TTF_OpenFont("media/terminal.ttf", 40);
+    TTF_Font* Sans = TTF_OpenFont("resources/terminal.ttf", 15);
     SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, "Maze Runner", (SDL_Color){255,255,255}); 
     SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
     SDL_Rect Text_rect;
