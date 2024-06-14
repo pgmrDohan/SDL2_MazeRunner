@@ -11,26 +11,27 @@ typedef struct MazeRunnerHelp {
 } MazeRunnerHelp;
 
 MazeRunnerTitle *MAZE_SetTitle(SDL_Renderer *renderer) {
-  SDL_Text *title = SDL_CreateTextRect(renderer, "Maze", SDL_CYAN, 0, 90);
+  SDL_Text *title =
+      SDL_CreateTextRect(renderer, "Maze", SDL_CYAN, TTF_STYLE_BOLD, 0, 100);
   title->TextRect.w = title->TextRect.w * 150 / title->TextRect.h;
   title->TextRect.h = 150;
   title->TextRect.x = (WIDTH / 2) - (title->TextRect.w / 2);
 
   SDL_Text *secondline =
-      SDL_CreateTextRect(renderer, "Runner", SDL_CYAN, 0, 180);
+      SDL_CreateTextRect(renderer, "Runner", SDL_CYAN, TTF_STYLE_BOLD, 0, 220);
   secondline->TextRect.w =
       secondline->TextRect.w * 150 / secondline->TextRect.h;
   secondline->TextRect.h = 150;
   secondline->TextRect.x = (WIDTH / 2) - (secondline->TextRect.w / 2);
 
-  SDL_Text *titleShadow =
-      SDL_CreateTextRect(renderer, "Maze", (SDL_Color){0, 255, 255, 100},
-                         title->TextRect.x + 3, title->TextRect.y + 3);
+  SDL_Text *titleShadow = SDL_CreateTextRect(
+      renderer, "Maze", (SDL_Color){0, 255, 255, 100}, TTF_STYLE_BOLD,
+      title->TextRect.x + 3, title->TextRect.y + 3);
   titleShadow->TextRect.w = title->TextRect.w;
   titleShadow->TextRect.h = title->TextRect.h;
 
   SDL_Text *secondlineShadow = SDL_CreateTextRect(
-      renderer, "Runner", (SDL_Color){0, 255, 255, 100},
+      renderer, "Runner", (SDL_Color){0, 255, 255, 100}, TTF_STYLE_BOLD,
       secondline->TextRect.x + 3, secondline->TextRect.y + 3);
   secondlineShadow->TextRect.w = secondline->TextRect.w;
   secondlineShadow->TextRect.h = secondline->TextRect.h;
@@ -62,21 +63,18 @@ void MAZE_DestroyTitle(MazeRunnerTitle *logo) {
 }
 
 MazeRunnerHelp *MAZE_SetHelp(SDL_Renderer *renderer) {
-  SDL_Text *firstline =
-      SDL_CreateTextRect(renderer,
-                         "[──] In Below Menu, You can use Arrow Key to move "
-                         "cursor and Enter Key to select.",
-                         SDL_WHITE, 0, 500);
+  SDL_Text *firstline = SDL_CreateTextRect(renderer, "@Dohan Kwon", SDL_WHITE,
+                                           TTF_STYLE_NORMAL, 0, 350);
   firstline->TextRect.w = firstline->TextRect.w * 25 / firstline->TextRect.h;
   firstline->TextRect.h = 25;
   firstline->TextRect.x = (WIDTH / 2) - (firstline->TextRect.w / 2);
 
   SDL_Text *secondline = SDL_CreateTextRect(
-      renderer, "[──] https://github.com/pgmrDohan/SDL2_MazeRunner", SDL_WHITE,
-      0, 524);
+      renderer, "- https://github.com/pgmrDohan/SDL2_MazeRunner -", SDL_WHITE,
+      TTF_STYLE_NORMAL, 0, 524);
   secondline->TextRect.w = secondline->TextRect.w * 25 / secondline->TextRect.h;
   secondline->TextRect.h = 25;
-  secondline->TextRect.x = firstline->TextRect.x;
+  secondline->TextRect.x = (WIDTH / 2) - (secondline->TextRect.w / 2);
 
   MazeRunnerHelp *manual = (MazeRunnerHelp *)malloc(sizeof(MazeRunnerHelp));
   manual->firstline = firstline;

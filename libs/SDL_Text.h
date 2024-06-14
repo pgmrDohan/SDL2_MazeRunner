@@ -5,11 +5,15 @@ typedef struct SDL_Text {
 } SDL_Text;
 
 SDL_Text *SDL_CreateTextRect(SDL_Renderer *renderer, char *textString,
-                             SDL_Color fontcolor, int x, int y) {
+                             SDL_Color fontcolor, int style, int x, int y) {
   SDL_Text *newTextRect = (SDL_Text *)malloc(sizeof(SDL_Text));
-
-  newTextRect->surfaceText =
-      TTF_RenderUTF8_Blended(FONT, textString, fontcolor);
+  if (style != 0) {
+    newTextRect->surfaceText =
+        TTF_RenderUTF8_Blended(TITLE_FONT, textString, fontcolor);
+  } else {
+    newTextRect->surfaceText =
+        TTF_RenderUTF8_Blended(FONT, textString, fontcolor);
+  }
   newTextRect->Text =
       SDL_CreateTextureFromSurface(renderer, newTextRect->surfaceText);
   newTextRect->TextRect = (SDL_Rect){x, y, 0, 0};

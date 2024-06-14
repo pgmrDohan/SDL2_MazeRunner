@@ -11,7 +11,8 @@
 #define WIDTH 1000
 #define HEIGHT 600
 
-#define FONT TTF_OpenFont("../resources/ark-pixel.bdf", 10)
+#define TITLE_FONT TTF_OpenFont("../resources/MooseNooks.bdf", 30)
+#define FONT TTF_OpenFont("../resources/ark-pixel.bdf", 16)
 
 #define CHECK_ERROR(test, message)        \
   do {                                    \
