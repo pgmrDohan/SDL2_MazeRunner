@@ -12,7 +12,7 @@ This Maze game is used to study algorithms like DFS, BFS, A* and etc.
 - [x] Draw main Rectangle
 - [x] Draw Select menu on func
 - [x] Draw Title
-- [ ] Grided main rectangle
-- [ ] Generate Algorithm
+- [x] Grided main rectangle
+- [x] Generate Algorithm
 - [ ] Solve Algorithm
 - [ ] Add external func like screenshot
