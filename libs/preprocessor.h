@@ -30,10 +30,20 @@
     }                                     \
   } while (0)
 
+typedef struct {
+  int posX;
+  int posY;
+} cell;
+
+#include "./SDL_Circle.h"
 #include "./SDL_Colors.h"
 #include "./SDL_Inits.h"
 #include "./SDL_Text.h"
 //
+#include "./Stack.h"
+//
+#include "./MAZE_Generater.h"
+#include "./MAZE_Init.h"
 #include "./MAZE_SelectMenu.h"
 #include "./MAZE_Selects.h"
 #include "./MAZE_Texts.h"

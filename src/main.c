@@ -71,6 +71,7 @@ int main(int argc, char **argv) {
                 solveOpt = 0;
                 if (activeSelectMenu == 2) {
                   gameSatus = 1;
+                  init_Generater();
                   activeSelectMenu = 1;
                 }
                 if (activeSelectMenu == 3) {
@@ -87,6 +88,7 @@ int main(int argc, char **argv) {
                 solveOpt = 1;
                 if (activeSelectMenu == 2) {
                   gameSatus = 1;
+                  init_Generater();
                   activeSelectMenu = 1;
                 }
                 if (activeSelectMenu == 3) {
@@ -100,6 +102,7 @@ int main(int argc, char **argv) {
               solveOpt = 2;
               if (activeSelectMenu == 2) {
                 gameSatus = 1;
+                init_Generater();
                 activeSelectMenu = 1;
               }
               if (activeSelectMenu == 3) {
@@ -111,6 +114,7 @@ int main(int argc, char **argv) {
               if (activeSelectMenu == 2) {
                 generateOpt = 3;
                 gameSatus = 1;
+                init_Generater();
                 activeSelectMenu = 1;
               }
               if (activeSelectMenu == 3) {
@@ -162,10 +166,25 @@ int main(int argc, char **argv) {
         MAZE_RenderHelp(renderer, manual);
         break;
       case 1:
-        printf("%d", generateOpt);
+        initGrid(renderer);
+
+        if (!isEmpty(stack)) {
+          Cell = pop(stack)->data;
+          if (cellNeighbour(Cell) != NULL) {
+            push(stack, Cell);
+            cell *neighbour = cellNeighbour(Cell);
+            removeWall(Cell, neighbour);
+            visited[neighbour->posX][neighbour->posY] = SDL_TRUE;
+            adjacency(Cell, neighbour);
+            push(stack, neighbour);
+          }
+        }
+
+        wallErase(renderer);
         break;
       case 2:
-        printf("%d", solveOpt);
+        initGrid(renderer);
+        wallErase(renderer);
         break;
       default:
         break;
