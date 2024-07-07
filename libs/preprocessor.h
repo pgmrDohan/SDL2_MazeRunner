@@ -9,7 +9,7 @@
 #include <time.h>
 
 #define WIDTH 1000
-#define HEIGHT 600
+#define HEIGHT 590
 
 #define TITLE_FONT TTF_OpenFont("../resources/MooseNooks.bdf", 30)
 #define FONT TTF_OpenFont("../resources/ark-pixel.bdf", 16)
@@ -26,4 +26,6 @@
 #include "./SDL_Inits.h"
 #include "./SDL_Text.h"
 //
+#include "./MAZE_SelectMenu.h"
+#include "./MAZE_Selects.h"
 #include "./MAZE_Texts.h"
