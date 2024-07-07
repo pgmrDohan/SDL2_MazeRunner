@@ -15,14 +15,14 @@ MazeRunnerTitle *MAZE_SetTitle(SDL_Renderer *renderer) {
       SDL_CreateTextRect(renderer, "Maze", SDL_CYAN, TTF_STYLE_BOLD, 0, 100);
   title->TextRect.w = title->TextRect.w * 150 / title->TextRect.h;
   title->TextRect.h = 150;
-  title->TextRect.x = (WIDTH / 2) - (title->TextRect.w / 2);
+  title->TextRect.x = ((WIDTH) / 2) - (title->TextRect.w / 2);
 
   SDL_Text *secondline =
       SDL_CreateTextRect(renderer, "Runner", SDL_CYAN, TTF_STYLE_BOLD, 0, 220);
   secondline->TextRect.w =
       secondline->TextRect.w * 150 / secondline->TextRect.h;
   secondline->TextRect.h = 150;
-  secondline->TextRect.x = (WIDTH / 2) - (secondline->TextRect.w / 2);
+  secondline->TextRect.x = ((WIDTH) / 2) - (secondline->TextRect.w / 2);
 
   SDL_Text *titleShadow = SDL_CreateTextRect(
       renderer, "Maze", (SDL_Color){0, 255, 255, 100}, TTF_STYLE_BOLD,
@@ -67,14 +67,15 @@ MazeRunnerHelp *MAZE_SetHelp(SDL_Renderer *renderer) {
                                            TTF_STYLE_NORMAL, 0, 350);
   firstline->TextRect.w = firstline->TextRect.w * 25 / firstline->TextRect.h;
   firstline->TextRect.h = 25;
-  firstline->TextRect.x = (WIDTH / 2) - (firstline->TextRect.w / 2);
+  firstline->TextRect.x = ((WIDTH) / 2) - (firstline->TextRect.w / 2);
 
   SDL_Text *secondline = SDL_CreateTextRect(
       renderer, "- https://github.com/pgmrDohan/SDL2_MazeRunner -", SDL_WHITE,
-      TTF_STYLE_NORMAL, 0, 524);
+      TTF_STYLE_NORMAL, 0, 100);
   secondline->TextRect.w = secondline->TextRect.w * 25 / secondline->TextRect.h;
   secondline->TextRect.h = 25;
-  secondline->TextRect.x = (WIDTH / 2) - (secondline->TextRect.w / 2);
+  secondline->TextRect.x = ((WIDTH) / 2) - (secondline->TextRect.w / 2);
+  secondline->TextRect.y = 610 - secondline->TextRect.h - 10;
 
   MazeRunnerHelp *manual = (MazeRunnerHelp *)malloc(sizeof(MazeRunnerHelp));
   manual->firstline = firstline;

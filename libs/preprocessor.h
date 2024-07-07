@@ -8,8 +8,16 @@
 #include <string.h>
 #include <time.h>
 
-#define WIDTH 1000
-#define HEIGHT 590
+#define Malloc(t) (t *)malloc(sizeof(t))
+#define Max(a, b) (a > b) ? a : b
+#define Min(a, b) (a < b) ? a : b
+
+#define grid_cell_size 40
+#define grid_width 25
+#define grid_height 15
+#define WIDTH (grid_width * grid_cell_size) + 20
+#define HEIGHT (grid_height * grid_cell_size) + 40
+#define nbOfCells (grid_width * grid_height)
 
 #define TITLE_FONT TTF_OpenFont("../resources/MooseNooks.bdf", 30)
 #define FONT TTF_OpenFont("../resources/ark-pixel.bdf", 16)

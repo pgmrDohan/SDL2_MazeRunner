@@ -30,10 +30,9 @@ MazeRunnerSelectMenu *MAZE_SetSelectMenu(SDL_Renderer *renderer, char **selects,
   }
   selectStr[selectStrI++] = '\0';
   SDL_Text *select = SDL_CreateTextRect(renderer, selectStr, SDL_WHITE,
-                                        TTF_STYLE_NORMAL, 0, 560);
+                                        TTF_STYLE_NORMAL, 10, 610);
   select->TextRect.w = select->TextRect.w * 25 / select->TextRect.h;
   select->TextRect.h = 25;
-  select->TextRect.x = 10;
   MazeRunnerSelectMenu *selectMenu =
       (MazeRunnerSelectMenu *)malloc(sizeof(MazeRunnerSelectMenu));
   selectMenu->select = select;

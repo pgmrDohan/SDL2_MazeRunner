@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
   MazeRunnerSelectMenu *solveOpts =
       MAZE_SetSelectMenu(renderer, (char **)SEL_SOLVE_OPT, LEN_SOLVE_OPT);
 
-  SDL_Rect Main_rect = {10, 10, 980, 550};
+  SDL_Rect Main_rect = {10, 10, 1000, 600};
 
   bool running = true;
   SDL_Event event;
